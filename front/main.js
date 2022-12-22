@@ -6,7 +6,17 @@ const ulElement = document.getElementById("messages");
 
 const username = "Ashkan";
 
-socket.emit("start", username);
+socket.on("etesal", (msg) => {
+  const liItem = document.createElement("li");
+  liItem.textContent = msg;
+  ulElement.appendChild(liItem);
+});
+
+socket.on("dis shodan", (msg) => {
+  const liItem = document.createElement("li");
+  liItem.textContent = msg;
+  ulElement.appendChild(liItem);
+});
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();

@@ -17,10 +17,10 @@ io.on("connection", (socket) => {
     console.log(msg);
   });
 
-  console.log("ye nafar vasl shod");
+  socket.broadcast.emit("etesal", "ye nafar vasl shod");
 
   socket.on("disconnect", () => {
-    console.log("ye nafar dis shod");
+    socket.broadcast.emit("dis shodan", "ye nafar dis shod!");
   });
 
   socket.on("message", (msg) => console.log(msg));
