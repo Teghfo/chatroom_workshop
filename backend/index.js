@@ -24,6 +24,14 @@ io.on("connection", (socket) => {
   });
 
   socket.on("message", (msg) => console.log(msg));
+
+  socket.on("typing", (msg) => {
+    socket.broadcast.emit("typing", msg);
+  });
+
+  socket.on("stop typing", (msg) => {
+    socket.broadcast.emit("stop typing", msg);
+  });
 });
 
 server.listen(3000, () => {

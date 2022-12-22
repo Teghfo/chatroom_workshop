@@ -13,9 +13,11 @@
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages > li { padding: 0.5rem 1rem; }
       #messages > li:nth-child(odd) { background: #efefef; }
+      #is-typing-notify{ display: none;}
     </style>
   </head>
   <body>
+    <p id="is-typing-notify"></p>
     <ul id="messages"></ul>
     <form id="form" action="">
       <input id="input" autocomplete="off" /><button>Send</button>
