@@ -23,7 +23,7 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("dis shodan", "ye nafar dis shod!");
   });
 
-  socket.on("message", (msg) => console.log(msg));
+  socket.on("message", (msg) => socket.broadcast.emit("message", msg));
 
   socket.on("typing", (msg) => {
     socket.broadcast.emit("typing", msg);
