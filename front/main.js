@@ -39,7 +39,7 @@ form.addEventListener("submit", (e) => {
   const message = `${nickName} ----> ${input.value}`;
   liItem.textContent = message;
   ulElement.appendChild(liItem);
-  socket.emit("message", message);
+  socket.emit("message", { nickName, message });
   window.scrollTo(0, document.body.scrollHeight);
   input.value = "";
 });

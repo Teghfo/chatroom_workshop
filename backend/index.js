@@ -5,6 +5,10 @@ const http = require("http");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
+const { dbConnection } = require("./db");
+const { Chat } = require("./model");
+
+dbConnection().catch((err) => console.log(err));
 
 app.use(express.static(path.join(__dirname, "../front")));
 
@@ -23,7 +27,12 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("dis shodan", "ye nafar dis shod!");
   });
 
-  socket.on("message", (msg) => socket.broadcast.emit("message", msg));
+  socket.on("message", async (msg) => {
+    const { nickName, message } = msg;
+    const newChat = new Chat({ nickName, content: message });
+    await newChat.save();
+    socket.broadcast.emit("message", message);
+  });
 
   socket.on("typing", (msg) => {
     socket.broadcast.emit("typing", msg);
